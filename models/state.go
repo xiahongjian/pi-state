@@ -9,7 +9,7 @@ type State struct {
 
 	MemoryTotal   int32   `json:"memoryTotal"`
 	MemoryUsed    int32   `json:"memoryUsed"`
-	MemoryPercent float32 `json:"memoryPercent"`
+	MemoryPercent float64 `json:"memoryPercent"`
 
-	Temperature float32 `json:"temperature"`
+	Temperature float64 `json:"temperature"`
 }

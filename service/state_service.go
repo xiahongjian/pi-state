@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/host"
@@ -14,7 +15,9 @@ func GetState() *models.State {
 	h, _ := host.Info()
 	m, _ := mem.VirtualMemory()
 	c, _ := cpu.Info()
+	s, _ := host.SensorsTemperatures()
 
+	memoryPercent, _ := strconv.ParseFloat(fmt.Sprintf("%.2f", m.UsedPercent), 64)
 	info := &models.State{
 		OS:     fmt.Sprintf("%s %s", h.Platform, h.PlatformVersion),
 		Uptime: formatUptime(h.Uptime),
@@ -24,7 +27,9 @@ func GetState() *models.State {
 
 		MemoryTotal:   byteToMB(m.Total),
 		MemoryUsed:    byteToMB(m.Used),
-		MemoryPercent: float32(m.UsedPercent),
+		MemoryPercent: memoryPercent,
+
+		Temperature: s[0].Temperature,
 	}
 	return info
 }
