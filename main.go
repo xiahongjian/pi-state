@@ -10,6 +10,8 @@ import (
 
 func main() {
 	router := routers.InitRouter()
+	router.LoadHTMLGlob(setting.TemplatePath)
+	router.StaticFS("/static", http.Dir(setting.StaticPath))
 
 	server := &http.Server{
 		Addr:           fmt.Sprintf(":%d", setting.HTTPPort),
@@ -18,5 +20,6 @@ func main() {
 		WriteTimeout:   setting.WriteTimeout,
 		MaxHeaderBytes: 1 << 20,
 	}
+
 	server.ListenAndServe()
 }
