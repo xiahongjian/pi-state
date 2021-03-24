@@ -9,6 +9,7 @@ import (
 )
 
 func SummaryInfo(c *gin.Context) {
+	service := &service.StateService{}
 	c.JSON(http.StatusOK, models.R{
 		Success: true,
 		Data:    service.GetState(),
