@@ -12,6 +12,10 @@ func InitPageRouter(engine *gin.Engine) {
 	engine.Group("/")
 	{
 		engine.GET("/index.html", Index)
+		engine.GET("/", func(c *gin.Context) {
+			c.Request.URL.Path = "/index.html"
+			engine.HandleContext(c)
+		})
 	}
 }
 
