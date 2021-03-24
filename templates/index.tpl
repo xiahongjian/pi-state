@@ -48,7 +48,7 @@
       <div class="jumbotron" style="margin-top: 10px;">
         <h2>基本信息</h2>
         <ul>
-          <li>系统: {{ .Data.OS }}/li>
+          <li>系统: {{ .Data.OS }}</li>
           <li>运行时间: {{ .Data.Uptime }}</li>
           <li>温度: {{ .Data.Temperature }}</li>
           <li>CPU: {{ .Data.CPUName }}</li>
